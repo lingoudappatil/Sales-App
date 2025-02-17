@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 
-const LoginPage = ({ goToRegister, goToHome }) => {
+const RegisterPage = ({ goToLogin, goToHome }) => {
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Login successful!");
+    alert("Registration successful!");
     goToHome(); // Navigate to Home Page
   };
 
   return (
     <div style={styles.container}>
-      <h2>Login</h2>
+      <h2>Register</h2>
       <form onSubmit={handleSubmit} style={styles.form}>
         <input
           type="text"
@@ -22,18 +23,25 @@ const LoginPage = ({ goToRegister, goToHome }) => {
           style={styles.input}
         />
         <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          style={styles.input}
+        />
+        <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           style={styles.input}
         />
-        <button type="submit" style={styles.button}>Login</button>
+        <button type="submit" style={styles.button}>Register</button>
       </form>
       <p style={styles.switchText}>
-        Don't have an account?{" "}
-        <span style={styles.link} onClick={goToRegister}>
-          Register here
+        Already have an account?{" "}
+        <span style={styles.link} onClick={goToLogin}>
+          Login here
         </span>
       </p>
     </div>
@@ -77,4 +85,4 @@ const styles = {
   link: { color: "blue", cursor: "pointer" },
 };
 
-export default LoginPage;
+export default RegisterPage;

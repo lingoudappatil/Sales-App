@@ -1,15 +1,22 @@
-import React, { useState } from 'react'; // Import useState
-import LoginPage from './LoginPage'; // Import LoginPage component
-import HomePage from './HomePage'; // Import HomePage component
+import React, { useState } from "react";
+import LoginPage from "./LoginPage";
+import RegisterPage from "./RegisterPage";
+import HomePage from "./HomePage";
 
-function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Define the login state
+const App = () => {
+  const [currentPage, setCurrentPage] = useState("login"); // Track current page
+
+  const goToRegister = () => setCurrentPage("register");
+  const goToLogin = () => setCurrentPage("login");
+  const goToHome = () => setCurrentPage("home");
 
   return (
-    <div className="App">
-      {isLoggedIn ? <HomePage /> : <LoginPage setIsLoggedIn={setIsLoggedIn} />}
+    <div>
+      {currentPage === "login" && <LoginPage goToRegister={goToRegister} goToHome={goToHome} />}
+      {currentPage === "register" && <RegisterPage goToLogin={goToLogin} goToHome={goToHome} />}
+      {currentPage === "home" && <HomePage />}
     </div>
   );
-}
+};
 
 export default App;
