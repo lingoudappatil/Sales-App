@@ -4,7 +4,8 @@ const HomePage = ({ goToLogin, goToRegister }) => {
   const [activeTab, setActiveTab] = useState("Home");
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(false);
-
+  const [notifications, setNotifications] = useState(["New Message", "Profile Update"]);
+  
   return (
     <div style={{ ...styles.container, backgroundColor: isDarkMode ? "#1E1E1E" : "#F5F5F5" }}>
       
@@ -13,17 +14,34 @@ const HomePage = ({ goToLogin, goToRegister }) => {
         <button style={styles.toggleSidebar} onClick={() => setIsSidebarOpen(!isSidebarOpen)}>
           {isSidebarOpen ? "◀" : "▶"}
         </button>
-        <h2 style={{ flexGrow: 1, color: isDarkMode ? "white" : "black" }}>My Website</h2>
+
+        <input type="text" placeholder="Search..." style={styles.searchBar} />
+
+        <h2 style={{ flexGrow: 1, color: isDarkMode ? "white" : "black" }}>Welcome, User! 👋</h2>
+
+        {/* Notifications Dropdown */}
+        <div style={styles.notificationContainer}>
+          <button style={styles.notificationButton} onClick={() => setNotifications([])}>🔔 {notifications.length}</button>
+          {notifications.length > 0 && (
+            <div style={styles.notificationDropdown}>
+              {notifications.map((note, index) => (
+                <div key={index} style={styles.notificationItem}>{note}</div>
+              ))}
+            </div>
+          )}
+        </div>
+
         <button style={styles.darkModeButton} onClick={() => setIsDarkMode(!isDarkMode)}>
           {isDarkMode ? "🌞 Light Mode" : "🌙 Dark Mode"}
         </button>
+
         <button style={styles.logoutButton}>Logout</button>
       </div>
 
       {/* Sidebar */}
       <div style={{ ...styles.sidebar, width: isSidebarOpen ? "220px" : "60px" }}>
         <ul style={styles.sidebarList}>
-          {["Home", "Login", "Register", "About Us", "Contact"].map((item) => (
+          {["Home", "Login", "Register", "Profile", "Settings", "Contact"].map((item) => (
             <li
               key={item}
               style={{
@@ -46,25 +64,23 @@ const HomePage = ({ goToLogin, goToRegister }) => {
 
       {/* Main Content */}
       <div style={styles.mainContent}>
-        <h1 style={{ color: isDarkMode ? "white" : "black" }}>Welcome to Our Website!</h1>
+        <h1 style={{ color: isDarkMode ? "white" : "black" }}>Dashboard Overview</h1>
         <p style={{ color: isDarkMode ? "#DDD" : "#333" }}>
-          Your go-to platform for seamless authentication.
+          Manage your account, notifications, and settings from here.
         </p>
 
-        <div style={styles.buttonGroup}>
-          <button onClick={goToLogin} style={styles.button}>Login</button>
-          <button onClick={goToRegister} style={styles.button}>Register</button>
-        </div>
-
-        <div style={styles.contentBox}>
-          <h2 style={{ color: isDarkMode ? "white" : "black" }}>Why Choose Us?</h2>
-          <p style={{ color: isDarkMode ? "#DDD" : "#333" }}>
-            We provide a secure and user-friendly platform for authentication.
-            Our system ensures smooth login and registration for all users.
-          </p>
-          <button style={styles.learnMoreButton}>Learn More</button>
+        <div style={styles.cardContainer}>
+          <div style={styles.card}>📊 Analytics</div>
+          <div style={styles.card}>📧 Messages</div>
+          <div style={styles.card}>⚙️ Settings</div>
+          <div style={styles.card}>🔔 Notifications</div>
         </div>
       </div>
+
+      {/* Footer */}
+      <footer style={styles.footer}>
+        <p>© 2025 My Website | Built with ❤️</p>
+      </footer>
     </div>
   );
 };
@@ -75,7 +91,8 @@ const getIcon = (item) => {
     "Home": "🏠",
     "Login": "🔑",
     "Register": "📝",
-    "About Us": "ℹ️",
+    "Profile": "👤",
+    "Settings": "⚙️",
     "Contact": "📞",
   };
   return <span>{icons[item]}</span>;
@@ -88,6 +105,7 @@ const styles = {
     height: "100vh",
     fontFamily: "Arial, sans-serif",
     transition: "background 0.3s ease-in-out",
+    flexDirection: "column",
   },
   navbar: {
     position: "fixed",
@@ -112,6 +130,39 @@ const styles = {
     borderRadius: "5px",
     marginRight: "10px",
   },
+  searchBar: {
+    padding: "6px",
+    width: "200px",
+    marginRight: "20px",
+    borderRadius: "5px",
+    border: "none",
+  },
+  notificationContainer: {
+    position: "relative",
+    marginRight: "15px",
+  },
+  notificationButton: {
+    backgroundColor: "#555",
+    color: "white",
+    border: "none",
+    padding: "8px 12px",
+    borderRadius: "5px",
+    cursor: "pointer",
+  },
+  notificationDropdown: {
+    position: "absolute",
+    top: "30px",
+    right: "0",
+    backgroundColor: "white",
+    color: "black",
+    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
+    padding: "10px",
+    borderRadius: "5px",
+  },
+  notificationItem: {
+    padding: "5px",
+    borderBottom: "1px solid #ddd",
+  },
   darkModeButton: {
     backgroundColor: "#555",
     color: "white",
@@ -129,7 +180,6 @@ const styles = {
     border: "none",
     borderRadius: "5px",
     cursor: "pointer",
-    transition: "background 0.3s",
   },
   sidebar: {
     height: "100%",
@@ -152,7 +202,7 @@ const styles = {
     padding: "12px",
     cursor: "pointer",
     borderRadius: "5px",
-    transition: "background 0.3s, justify-content 0.3s",
+    transition: "background 0.3s",
     marginBottom: "10px",
     fontSize: "16px",
     display: "flex",
@@ -164,45 +214,29 @@ const styles = {
     padding: "20px",
     flexGrow: 1,
     textAlign: "center",
-    transition: "margin-left 0.3s ease-in-out",
   },
-  buttonGroup: {
+  cardContainer: {
     display: "flex",
     justifyContent: "center",
     gap: "20px",
     marginTop: "20px",
   },
-  button: {
-    padding: "12px 20px",
-    fontSize: "16px",
-    borderRadius: "5px",
-    border: "none",
-    cursor: "pointer",
-    backgroundColor: "#4CAF50",
-    color: "white",
-    fontWeight: "bold",
-    transition: "background 0.3s",
-  },
-  contentBox: {
-    marginTop: "30px",
+  card: {
     padding: "20px",
-    width: "400px",
-    textAlign: "center",
-    background: "#f9f9f9",
+    background: "#eee",
     borderRadius: "10px",
-    boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
-    margin: "auto",
-  },
-  learnMoreButton: {
-    marginTop: "15px",
-    padding: "10px 15px",
-    fontSize: "14px",
-    backgroundColor: "#008CBA",
-    color: "white",
-    border: "none",
-    borderRadius: "5px",
+    width: "120px",
+    textAlign: "center",
     cursor: "pointer",
-    transition: "background 0.3s",
+  },
+  footer: {
+    backgroundColor: "#222",
+    color: "white",
+    padding: "10px",
+    textAlign: "center",
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
   },
 };
 
