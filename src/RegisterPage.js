@@ -10,7 +10,6 @@ const RegisterPage = ({ goToLogin, goToHome }) => {
     alert("Registration successful!");
     goToHome(); // Navigate to Home Page
   };
-
   return (
     <div style={styles.container}>
       <h2>Register</h2>
@@ -47,7 +46,6 @@ const RegisterPage = ({ goToLogin, goToHome }) => {
     </div>
   );
 };
-
 const styles = {
   container: { 
     textAlign: "center", 
