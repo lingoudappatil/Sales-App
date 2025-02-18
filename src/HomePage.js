@@ -1,41 +1,61 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const HomePage = ({ setIsLoggedIn }) => {
   const [activeContent, setActiveContent] = useState("Dashboard");
+  const [darkMode, setDarkMode] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => setCurrentTime(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
-    <div style={styles.container}>
+    <div style={{ ...styles.container, backgroundColor: darkMode ? "#121212" : "#f5f5f5" }}>
       {/* Top Bar */}
-      <div style={styles.topBar}>
-        <h2 style={styles.topBarTitle}>Welcome to My App</h2>
+      <div style={{ ...styles.topBar, backgroundColor: darkMode ? "#222" : "#333" }}>
+        <button style={styles.sidebarToggle} onClick={() => setSidebarOpen(!sidebarOpen)}>
+          {sidebarOpen ? "⬅️" : "➡️"}
+        </button>
+        <h2 style={styles.topBarTitle}>Welcome, User</h2>
+        <span style={{ marginLeft: "auto", color: "white" }}>{currentTime.toLocaleTimeString()}</span>
+        <button style={styles.darkModeButton} onClick={() => setDarkMode(!darkMode)}>
+          {darkMode ? "🌞 Light Mode" : "🌙 Dark Mode"}
+        </button>
+        <span style={styles.notificationBell}>🔔</span>
       </div>
 
       <div style={styles.contentWrapper}>
         {/* Sidebar */}
-        <div style={styles.sidebar}>
-          <h2 style={styles.logo}>My App</h2>
-          <ul style={styles.sidebarList}>
-            {["Dashboard", "Profile", "Settings", "Contact", "Logout"].map((item) => (
-              <li
-                key={item}
-                style={{
-                  ...styles.sidebarListItem,
-                  backgroundColor: activeContent === item ? "#555" : "transparent",
-                }}
-                onClick={() => {
-                  if (item === "Logout") {
-                    setIsLoggedIn(false); // Logout and go to Login Page
-                  } else {
-                    setActiveContent(item);
-                  }
-                }}
-              >
-                {getIcon(item)}
-                <span style={{ marginLeft: "10px" }}>{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {sidebarOpen && (
+          <div style={styles.sidebar}>
+            <h2 style={styles.logo}>My App</h2>
+            <ul style={styles.sidebarList}>
+              {["Dashboard", "Profile", "Settings", "Contact", "Logout"].map((item) => (
+                <li
+                  key={item}
+                  style={{
+                    ...styles.sidebarListItem,
+                    backgroundColor: activeContent === item ? "#555" : "transparent",
+                  }}
+                  onClick={() => {
+                    if (item === "Logout") {
+                      if (window.confirm("Are you sure you want to log out?")) {
+                        setIsLoggedIn(false);
+                      }
+                    } else {
+                      setActiveContent(item);
+                    }
+                  }}
+                >
+                  {getIcon(item)}
+                  <span style={{ marginLeft: "10px" }}>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         {/* Main Content */}
         <div style={styles.mainContent}>
@@ -86,15 +106,31 @@ const styles = {
   topBar: {
     width: "100%",
     height: "60px",
-    backgroundColor: "#333",
-    color: "white",
     display: "flex",
     alignItems: "center",
-    paddingLeft: "20px",
-    fontSize: "18px",
+    padding: "0 20px",
+    color: "white",
   },
   topBarTitle: {
     margin: 0,
+  },
+  sidebarToggle: {
+    background: "none",
+    border: "none",
+    color: "white",
+    fontSize: "20px",
+    cursor: "pointer",
+    marginRight: "15px",
+  },
+  darkModeButton: {
+    marginLeft: "20px",
+    padding: "5px 10px",
+    cursor: "pointer",
+  },
+  notificationBell: {
+    fontSize: "20px",
+    marginLeft: "15px",
+    cursor: "pointer",
   },
   contentWrapper: {
     display: "flex",
