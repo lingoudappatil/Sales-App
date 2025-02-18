@@ -5,6 +5,7 @@ const HomePage = ({ setIsLoggedIn }) => {
   const [darkMode, setDarkMode] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const timer = setInterval(() => setCurrentTime(new Date()), 1000);
@@ -19,6 +20,18 @@ const HomePage = ({ setIsLoggedIn }) => {
           {sidebarOpen ? "⬅️" : "➡️"}
         </button>
         <h2 style={styles.topBarTitle}>Welcome, User</h2>
+
+        {/* Centered Search Bar */}
+        <div style={styles.searchContainer}>
+          <input
+            type="text"
+            placeholder="Search..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            style={styles.searchBar}
+          />
+        </div>
+
         <span style={{ marginLeft: "auto", color: "white" }}>{currentTime.toLocaleTimeString()}</span>
         <button style={styles.darkModeButton} onClick={() => setDarkMode(!darkMode)}>
           {darkMode ? "🌞 Light Mode" : "🌙 Dark Mode"}
@@ -60,6 +73,16 @@ const HomePage = ({ setIsLoggedIn }) => {
         {/* Main Content */}
         <div style={styles.mainContent}>
           <h1>{activeContent}</h1>
+          
+          {/* Marquee in Dashboard only */}
+          {activeContent === "Dashboard" && (
+            <div style={styles.marqueeWrapper}>
+              <marquee behavior="scroll" direction="left" style={styles.marquee}>
+                📢 Welcome to the Dashboard! Stay updated with the latest information here.
+              </marquee>
+            </div>
+          )}
+          
           {renderContent(activeContent)}
         </div>
       </div>
@@ -108,8 +131,22 @@ const styles = {
     height: "60px",
     display: "flex",
     alignItems: "center",
+    justifyContent: "space-between",
     padding: "0 20px",
     color: "white",
+    position: "relative",
+  },
+  searchContainer: {
+    position: "absolute",
+    left: "50%",
+    transform: "translateX(-50%)",
+  },
+  searchBar: {
+    width: "300px",
+    padding: "8px",
+    border: "1px solid #ccc",
+    borderRadius: "5px",
+    outline: "none",
   },
   topBarTitle: {
     margin: 0,
@@ -167,6 +204,18 @@ const styles = {
   mainContent: {
     flexGrow: 1,
     padding: "20px",
+  },
+  marqueeWrapper: {
+    width: "100%",
+    backgroundColor: "transparent",
+    textAlign: "center",
+    padding: "5px 0",
+    marginTop: "10px",
+  },
+  marquee: {
+    color: "black",
+    fontSize: "16px",
+    fontWeight: "bold",
   },
 };
 
