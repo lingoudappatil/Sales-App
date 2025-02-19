@@ -101,7 +101,7 @@ const renderContent = (activeContent) => {
     case "Contact":
       return <p>📞 Contact us at support@example.com.</p>;
     default:
-      return <p>Welcome to the homepage!</p>;
+      return <p>Welcome to the homepage! and Dashboard</p>;
   }
 };
 
