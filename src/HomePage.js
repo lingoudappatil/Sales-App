@@ -69,7 +69,6 @@ const HomePage = ({ setIsLoggedIn }) => {
             </ul>
           </div>
         )}
-
         {/* Main Content */}
         <div style={styles.mainContent}>
           <h1>{activeContent}</h1>
