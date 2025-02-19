@@ -19,7 +19,7 @@ const HomePage = ({ setIsLoggedIn }) => {
         <button style={styles.sidebarToggle} onClick={() => setSidebarOpen(!sidebarOpen)}>
           {sidebarOpen ? "⬅️" : "➡️"}
         </button>
-        <h2 style={styles.topBarTitle}>Welcome, User</h2>
+        <h2 style={styles.topBarTitle}>Welcome, Admin</h2>
 
         {/* Centered Search Bar */}
         <div style={styles.searchContainer}>
@@ -94,7 +94,7 @@ const HomePage = ({ setIsLoggedIn }) => {
 const renderContent = (activeContent) => {
   switch (activeContent) {
     case "Dashboard":
-      return <p>📊 Welcome to the Dashboard! Here you can see the overview of your activities.</p>;
+      return <p>📊 Welcome to the Dashboard Developed By Lingouda! Here you can see the overview of your activities.</p>;
     case "Profile":
       return <p>👤 This is your profile. Update your details here.</p>;
     case "Settings":
