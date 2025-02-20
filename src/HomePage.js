@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./HomePage.css"; // Import CSS
 
 const HomePage = ({ setCurrentPage }) => {
   const [activeContent, setActiveContent] = useState("Dashboard");
@@ -13,49 +14,46 @@ const HomePage = ({ setCurrentPage }) => {
   }, []);
 
   return (
-    <div style={{ ...styles.container, backgroundColor: darkMode ? "#121212" : "#f5f5f5" }}>
+    <div className={`container ${darkMode ? "dark" : "light"}`}>
       {/* Top Bar */}
-      <div style={{ ...styles.topBar, backgroundColor: darkMode ? "#222" : "#333" }}>
-        <button style={styles.sidebarToggle} onClick={() => setSidebarOpen(!sidebarOpen)}>
+      <div className={`top-bar ${darkMode ? "dark" : "light"}`}>
+        <button className="sidebar-toggle" onClick={() => setSidebarOpen(!sidebarOpen)}>
           {sidebarOpen ? "⬅️" : "➡️"}
         </button>
-        <h2 style={styles.topBarTitle}>Welcome, Admin</h2>
+        <h2 className="top-bar-title">Welcome, Admin</h2>
 
         {/* Centered Search Bar */}
-        <div style={styles.searchContainer}>
+        <div className="search-container">
           <input
             type="text"
             placeholder="Search..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            style={styles.searchBar}
+            className="search-bar"
           />
         </div>
 
         <span style={{ marginLeft: "auto", color: "white" }}>{currentTime.toLocaleTimeString()}</span>
-        <button style={styles.darkModeButton} onClick={() => setDarkMode(!darkMode)}>
+        <button className="dark-mode-button" onClick={() => setDarkMode(!darkMode)}>
           {darkMode ? "🌞 Light Mode" : "🌙 Dark Mode"}
         </button>
-        <span style={styles.notificationBell}>🔔</span>
+        <span className="notification-bell">🔔</span>
       </div>
 
-      <div style={styles.contentWrapper}>
+      <div className="content-wrapper">
         {/* Sidebar */}
         {sidebarOpen && (
-          <div style={styles.sidebar}>
-            <h2 style={styles.logo}>My App</h2>
-            <ul style={styles.sidebarList}>
+          <div className="sidebar">
+            <h2 className="logo">My App</h2>
+            <ul className="sidebar-list">
               {["Dashboard", "Profile", "Settings", "Contact", "Logout"].map((item) => (
                 <li
                   key={item}
-                  style={{
-                    ...styles.sidebarListItem,
-                    backgroundColor: activeContent === item ? "#555" : "transparent",
-                  }}
+                  className={`sidebar-list-item ${activeContent === item ? "active" : ""}`}
                   onClick={() => {
                     if (item === "Logout") {
                       if (window.confirm("Are you sure you want to log out?")) {
-                        setCurrentPage("login"); // Redirect to login page
+                        setCurrentPage("login");
                       }
                     } else {
                       setActiveContent(item);
@@ -70,13 +68,13 @@ const HomePage = ({ setCurrentPage }) => {
           </div>
         )}
         {/* Main Content */}
-        <div style={styles.mainContent}>
+        <div className="main-content">
           <h1>{activeContent}</h1>
 
           {/* Marquee in Dashboard only */}
           {activeContent === "Dashboard" && (
-            <div style={styles.marqueeWrapper}>
-              <marquee behavior="scroll" direction="left" style={styles.marquee}>
+            <div className="marquee-wrapper">
+              <marquee behavior="scroll" direction="left" className="marquee">
                 📢 Welcome to the Dashboard! Stay updated with the latest information here.
               </marquee>
             </div>
@@ -88,7 +86,6 @@ const HomePage = ({ setCurrentPage }) => {
     </div>
   );
 };
-
 
 // Function to display different content based on the selected section
 const renderContent = (activeContent) => {
@@ -109,114 +106,13 @@ const renderContent = (activeContent) => {
 // Function to return icons for sidebar items
 const getIcon = (item) => {
   const icons = {
-    "Dashboard": "📊",
-    "Profile": "👤",
-    "Settings": "⚙️",
-    "Contact": "📞",
-    "Logout": "🚪",
+    Dashboard: "📊",
+    Profile: "👤",
+    Settings: "⚙️",
+    Contact: "📞",
+    Logout: "🚪",
   };
   return <span>{icons[item]}</span>;
-};
-
-// Styling
-const styles = {
-  container: {
-    display: "flex",
-    flexDirection: "column",
-    height: "100vh",
-    fontFamily: "Arial, sans-serif",
-  },
-  topBar: {
-    width: "100%",
-    height: "60px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    padding: "0 20px",
-    color: "white",
-    position: "relative",
-  },
-  searchContainer: {
-    position: "absolute",
-    left: "50%",
-    transform: "translateX(-50%)",
-  },
-  searchBar: {
-    width: "300px",
-    padding: "8px",
-    border: "1px solid #ccc",
-    borderRadius: "5px",
-    outline: "none",
-  },
-  topBarTitle: {
-    margin: 0,
-  },
-  sidebarToggle: {
-    background: "none",
-    border: "none",
-    color: "white",
-    fontSize: "20px",
-    cursor: "pointer",
-    marginRight: "15px",
-  },
-  darkModeButton: {
-    marginLeft: "20px",
-    padding: "5px 10px",
-    cursor: "pointer",
-  },
-  notificationBell: {
-    fontSize: "20px",
-    marginLeft: "15px",
-    cursor: "pointer",
-  },
-  contentWrapper: {
-    display: "flex",
-    flexGrow: 1,
-  },
-  sidebar: {
-    width: "220px",
-    height: "100%",
-    backgroundColor: "#222",
-    color: "white",
-    padding: "20px",
-    display: "flex",
-    flexDirection: "column",
-  },
-  logo: {
-    textAlign: "center",
-    fontSize: "20px",
-    marginBottom: "20px",
-  },
-  sidebarList: {
-    listStyleType: "none",
-    padding: 0,
-    margin: 0,
-  },
-  sidebarListItem: {
-    padding: "12px",
-    cursor: "pointer",
-    borderRadius: "5px",
-    transition: "background 0.3s",
-    marginBottom: "10px",
-    display: "flex",
-    alignItems: "center",
-  },
-  mainContent: {
-    flexGrow: 1,
-    padding: "20px",
-  },
-  marqueeWrapper: {
-    width: "100%",
-    backgroundColor: "transparent",
-    textAlign: "center",
-    padding: "5px 0",
-    marginTop: "10px",
-  },
-  marquee: {
-    color: "black",
-    fontSize: "16px",
-    fontWeight: "bold",
-  },
 };
 
 export default HomePage;
