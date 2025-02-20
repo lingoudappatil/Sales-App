@@ -76,6 +76,7 @@ const HomePage = ({ setCurrentPage }) => {
             <div className="marquee-wrapper">
               <marquee behavior="scroll" direction="left" className="marquee">
                 📢 Welcome to the Dashboard! Stay updated with the latest information here.
+                Here, We are to Build Project content
               </marquee>
             </div>
           )}
