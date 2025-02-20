@@ -14,11 +14,9 @@ const App = () => {
     <div>
       {currentPage === "login" && <LoginPage goToRegister={goToRegister} goToHome={goToHome} />}
       {currentPage === "register" && <RegisterPage goToLogin={goToLogin} goToHome={goToHome} />}
-      {currentPage === "home" && <HomePage />}
+      {currentPage === "home" && <HomePage setCurrentPage={setCurrentPage} />}
     </div>
   );
 };
 
 export default App;
-
-

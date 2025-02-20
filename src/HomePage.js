@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const HomePage = ({ setIsLoggedIn }) => {
+const HomePage = ({ setCurrentPage }) => {
   const [activeContent, setActiveContent] = useState("Dashboard");
   const [darkMode, setDarkMode] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -55,7 +55,7 @@ const HomePage = ({ setIsLoggedIn }) => {
                   onClick={() => {
                     if (item === "Logout") {
                       if (window.confirm("Are you sure you want to log out?")) {
-                        setIsLoggedIn(false);
+                        setCurrentPage("login"); // Redirect to login page
                       }
                     } else {
                       setActiveContent(item);
@@ -72,7 +72,7 @@ const HomePage = ({ setIsLoggedIn }) => {
         {/* Main Content */}
         <div style={styles.mainContent}>
           <h1>{activeContent}</h1>
-          
+
           {/* Marquee in Dashboard only */}
           {activeContent === "Dashboard" && (
             <div style={styles.marqueeWrapper}>
@@ -81,13 +81,14 @@ const HomePage = ({ setIsLoggedIn }) => {
               </marquee>
             </div>
           )}
-          
+
           {renderContent(activeContent)}
         </div>
       </div>
     </div>
   );
 };
+
 
 // Function to display different content based on the selected section
 const renderContent = (activeContent) => {
