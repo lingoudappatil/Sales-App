@@ -74,7 +74,7 @@ const HomePage = ({ setCurrentPage }) => {
           {activeContent === "Dashboard" && (
             <div className="marquee-wrapper">
               <marquee behavior="scroll" direction="left" className="marquee">
-                📢 Welcome to the Dashboard! Stay updated with the latest information here.
+                📢 Welcome to the Lingouda's Dashboard! Stay updated with the latest information here.
               </marquee>
             </div>
           )}
