@@ -189,7 +189,7 @@ const renderContent = (activeContent) => {
     case "Add Customer":
       return <AddCustomerForm />;
     default:
-      return <div>Welcome to the Dashboard</div>;
+      return <div>Welcome to the Dashboard Lingouda</div>;
   }
 };
 
