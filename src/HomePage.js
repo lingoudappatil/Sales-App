@@ -185,7 +185,7 @@ const renderContent = (activeContent) => {
     case "Settings":
       return <div className="settings-content">⚙️ Application Settings Panel</div>;
     case "Contact":
-      return <div className="contact-content">📞 Contact Support: support@example.com</div>;
+      return <div className="contact-content">📞 Contact Support: support@lingoudapatil.com</div>;
     case "Add Customer":
       return <AddCustomerForm />;
     default:
