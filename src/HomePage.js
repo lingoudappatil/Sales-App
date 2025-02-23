@@ -44,7 +44,7 @@ const HomePage = ({ setCurrentPage }) => {
         <div className={`sidebar ${sidebarOpen ? "expanded" : "collapsed"}`}>
           <h2 className="logo">{sidebarOpen ? "My App" : "🔷"}</h2>
           <ul className="sidebar-list">
-            {["Dashboard", "Profile", "Settings", "Contact", "Add Customer", "Logout"].map((item) => (
+            {["Dashboard", "Lead", "Quotation", "Contact", "Add Customer", "Logout"].map((item) => (
               <li
                 key={item}
                 className={`sidebar-list-item ${activeContent === item ? "active" : ""}`}
@@ -155,10 +155,10 @@ const renderContent = (activeContent) => {
           </div>
         </div>
       );
-    case "Profile":
-      return <div className="profile-content">👤 User Profile Section</div>;
-    case "Settings":
-      return <div className="settings-content">⚙️ Application Settings Panel</div>;
+    case "Lead":
+      return <div className="Lead-content">👤 User Profile Section</div>;
+    case "Quotation":
+      return <div className="Quotation-content">⚙️ Application Settings Panel</div>;
     case "Contact":
       return <div className="contact-content">📞 Contact Support: support@lingoudapatil.com</div>;
     case "Add Customer":
@@ -172,8 +172,8 @@ const renderContent = (activeContent) => {
 const getIcon = (item) => {
   const icons = {
     Dashboard: "📊",
-    Profile: "👤",
-    Settings: "⚙️",
+    Lead: "👤",
+    Quotation: "⚙️",
     Contact: "📞",
     "Add Customer": "➕",
     Logout: "🚪",
