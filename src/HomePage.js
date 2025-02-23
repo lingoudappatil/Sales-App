@@ -138,7 +138,7 @@ const renderContent = (activeContent) => {
     case "Dashboard":
       return (
         <div className="dashboard-content">
-          <p>📊 Welcome to the Dashboard! Here you can see the overview of your activities.</p>
+          <p>📊 Welcome to the Lingouda's Dashboard! Here you can see the overview of your activities.</p>
           <div className="stats-container">
             <div className="stat-box">
               <h3>Total Customers</h3>
