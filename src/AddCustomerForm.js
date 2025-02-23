@@ -43,6 +43,15 @@ const AddCustomerForm = () => {
               required
             />
           </div>
+		  <div className="form-group">
+            <label>State:</label>
+            <input
+              type="text"
+              value={state}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
           <button type="submit">Add Customer</button>
         </form>
       </div>

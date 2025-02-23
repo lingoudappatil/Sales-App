@@ -44,7 +44,7 @@ const HomePage = ({ setCurrentPage }) => {
         <div className={`sidebar ${sidebarOpen ? "expanded" : "collapsed"}`}>
           <h2 className="logo">{sidebarOpen ? "My App" : "🔷"}</h2>
           <ul className="sidebar-list">
-            {["Dashboard", "Lead", "Quotation", "Order", "Add Customer", "Logout"].map((item) => (
+            {["Dashboard","Add Customer", "Lead", "Quotation", "Order", "Logout"].map((item) => (
               <li
                 key={item}
                 className={`sidebar-list-item ${activeContent === item ? "active" : ""}`}
@@ -123,6 +123,10 @@ const AddCustomerForm = () => {
         <div className="form-group">
           <label>Address:</label>
           <textarea name="address" value={formData.address} onChange={handleChange} rows="3" />
+        </div>
+		<div className="form-group">
+          <label>State:</label>
+          <input type="text" name="state" value={formData.name} onChange={handleChange} required />
         </div>
         <button type="submit" className="submit-button">
           Add Customer
