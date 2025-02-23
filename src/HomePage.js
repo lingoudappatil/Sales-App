@@ -44,7 +44,7 @@ const HomePage = ({ setCurrentPage }) => {
         <div className={`sidebar ${sidebarOpen ? "expanded" : "collapsed"}`}>
           <h2 className="logo">{sidebarOpen ? "My App" : "🔷"}</h2>
           <ul className="sidebar-list">
-            {["Dashboard","Add Customer", "Lead", "Quotation", "Order", "Logout"].map((item) => (
+            {["Dashboard", "Add Customer", "Lead", "Quotation", "Order", "Logout"].map((item) => (
               <li
                 key={item}
                 className={`sidebar-list-item ${activeContent === item ? "active" : ""}`}
@@ -124,7 +124,59 @@ const AddCustomerForm = () => {
           <label>Address:</label>
           <textarea name="address" value={formData.address} onChange={handleChange} rows="3" />
         </div>
-		<div className="form-group">
+        <div className="form-group">
+          <label>State:</label>
+          <input type="text" name="state" value={formData.name} onChange={handleChange} required />
+        </div>
+        <button type="submit" className="submit-button">
+          Add Customer
+        </button>
+      </form>
+    </div>
+  );
+};
+
+// Add Lead Form Component
+const Lead = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    address: ''
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Lead data:', formData);
+    setFormData({ name: '', email: '', phone: '', address: '' });
+    alert('Lead added successfully!');
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  return (
+    <div className="add-customer-form" >
+      <h2>New Lead  Registration for sale</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label>Full Name:</label>
+          <input type="text" name="name" value={formData.name} onChange={handleChange} required />
+        </div>
+        <div className="form-group">
+          <label>Email:</label>
+          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+        </div>
+        <div className="form-group">
+          <label>Phone Number:</label>
+          <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
+        </div>
+        <div className="form-group">
+          <label>Address:</label>
+          <textarea name="address" value={formData.address} onChange={handleChange} rows="3" />
+        </div>
+        <div className="form-group">
           <label>State:</label>
           <input type="text" name="state" value={formData.name} onChange={handleChange} required />
         </div>
@@ -160,7 +212,7 @@ const renderContent = (activeContent) => {
         </div>
       );
     case "Lead":
-      return <div className="Lead-content">👤 User Profile Section</div>;
+      return <Lead />;
     case "Quotation":
       return <div className="Quotation-content">⚙️ Application Settings Panel</div>;
     case "Order":
