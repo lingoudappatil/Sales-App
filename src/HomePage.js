@@ -41,32 +41,30 @@ const HomePage = ({ setCurrentPage }) => {
 
       <div className="content-wrapper">
         {/* Sidebar */}
-        {sidebarOpen && (
-          <div className="sidebar">
-            <h2 className="logo">My App</h2>
-            <ul className="sidebar-list">
-              {["Dashboard", "Profile", "Settings", "Contact", "Add Customer", "Logout"].map((item) => (
-                <li
-                  key={item}
-                  className={`sidebar-list-item ${activeContent === item ? "active" : ""}`}
-                  onClick={() => {
-                    if (item === "Logout") {
-                      if (window.confirm("Are you sure you want to log out?")) {
-                        setCurrentPage("login");
-                      }
-                    } else {
-                      setActiveContent(item);
+        <div className={`sidebar ${sidebarOpen ? "expanded" : "collapsed"}`}>
+          <h2 className="logo">{sidebarOpen ? "My App" : "🔷"}</h2>
+          <ul className="sidebar-list">
+            {["Dashboard", "Profile", "Settings", "Contact", "Add Customer", "Logout"].map((item) => (
+              <li
+                key={item}
+                className={`sidebar-list-item ${activeContent === item ? "active" : ""}`}
+                onClick={() => {
+                  if (item === "Logout") {
+                    if (window.confirm("Are you sure you want to log out?")) {
+                      setCurrentPage("login");
                     }
-                  }}
-                >
-                  {getIcon(item)}
-                  <span style={{ marginLeft: "10px" }}>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-        
+                  } else {
+                    setActiveContent(item);
+                  }
+                }}
+              >
+                {getIcon(item)}
+                {sidebarOpen && <span style={{ marginLeft: "10px" }}>{item}</span>}
+              </li>
+            ))}
+          </ul>
+        </div>
+
         {/* Main Content */}
         <div className="main-content">
           <h1>{activeContent}</h1>
@@ -112,42 +110,19 @@ const AddCustomerForm = () => {
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Full Name:</label>
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
+          <input type="text" name="name" value={formData.name} onChange={handleChange} required />
         </div>
         <div className="form-group">
           <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
+          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
         </div>
         <div className="form-group">
           <label>Phone Number:</label>
-          <input
-            type="tel"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            required
-          />
+          <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
         </div>
         <div className="form-group">
           <label>Address:</label>
-          <textarea
-            name="address"
-            value={formData.address}
-            onChange={handleChange}
-            rows="3"
-          />
+          <textarea name="address" value={formData.address} onChange={handleChange} rows="3" />
         </div>
         <button type="submit" className="submit-button">
           Add Customer
