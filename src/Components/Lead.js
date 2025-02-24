@@ -1,3 +1,5 @@
+import './Lead.css';
+
 const Lead = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
