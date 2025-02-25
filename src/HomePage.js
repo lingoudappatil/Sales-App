@@ -243,7 +243,57 @@ const Quotation = () => {
 
 
 
+// Add Order Form Component
+const Order = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    address: ''
+  });
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Quotation data:', formData);
+    setFormData({ name: '', email: '', phone: '', address: '' });
+    alert('Order added successfully!');
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  return (
+    <div className="add-customer-form" >
+      <h2>New Order page for sale</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label>Full Name:</label>
+          <input type="text" name="name" value={formData.name} onChange={handleChange} required />
+        </div>
+        <div className="form-group">
+          <label>Email:</label>
+          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+        </div>
+        <div className="form-group">
+          <label>Phone Number:</label>
+          <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
+        </div>
+        <div className="form-group">
+          <label>Address:</label>
+          <textarea name="address" value={formData.address} onChange={handleChange} rows="3" />
+        </div>
+        <div className="form-group">
+          <label>State:</label>
+          <input type="text" name="state" value={formData.name} onChange={handleChange} required />
+        </div>
+        <button type="submit" className="submit-button">
+          submit
+        </button>
+      </form>
+    </div>
+  );
+};
 
 // Content Renderer
 const renderContent = (activeContent) => {
@@ -273,7 +323,7 @@ const renderContent = (activeContent) => {
     case "Quotation":
       return <Quotation />;
     case "Order":
-      return <div className="Order-content">📞 Contact Support: support@lingoudapatil.com</div>;
+      return <Order />;
     case "Add Customer":
       return <AddCustomerForm />;
     default:
