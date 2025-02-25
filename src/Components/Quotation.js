@@ -45,6 +45,33 @@ const Quotation = () => {
               required
             />
           </div>
+          <div className="form-group">
+            <label>Item Name:</label>
+            <input
+              type="text"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Quantity:</label>
+            <input
+              type="num"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Amount:</label>
+            <input
+              type="num"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              required
+            />
+          </div>
           <button type="submit">Add Lead</button>
         </form>
       </div>

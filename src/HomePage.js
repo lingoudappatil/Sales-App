@@ -201,7 +201,7 @@ const Quotation = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Quotation data:', formData);
-    setFormData({ name: '', email: '', phone: '', address: '' });
+    setFormData({ name: '', email: '', phone: '', item: '', quantity: '', amount:'',address: '' });
     alert('Quotation added successfully!');
   };
 
@@ -226,6 +226,18 @@ const Quotation = () => {
           <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
         </div>
         <div className="form-group">
+          <label>Item Name:</label>
+          <input type="text" name="name" value={formData.item} onChange={handleChange} required />
+        </div>
+        <div className="form-group">
+          <label>Quantity:</label>
+          <input type="num" name="phone" value={formData.quantity} onChange={handleChange} required />
+        </div>
+        <div className="form-group">
+          <label>Amount</label>
+          <input type="number" name="phone" value={formData.amount} onChange={handleChange} required />
+        </div>
+        <div className="form-group">
           <label>Address:</label>
           <textarea name="address" value={formData.address} onChange={handleChange} rows="3" />
         </div>
@@ -234,7 +246,7 @@ const Quotation = () => {
           <input type="text" name="state" value={formData.name} onChange={handleChange} required />
         </div>
         <button type="submit" className="submit-button">
-          submit
+          Submit
         </button>
       </form>
     </div>
@@ -255,7 +267,7 @@ const Order = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Quotation data:', formData);
-    setFormData({ name: '', email: '', phone: '', address: '' });
+    setFormData({ name: '', email: '', phone: '', item: '', quantity: '', amount:'', address: '' });
     alert('Order added successfully!');
   };
 
@@ -278,6 +290,18 @@ const Order = () => {
         <div className="form-group">
           <label>Phone Number:</label>
           <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
+        </div>
+        <div className="form-group">
+          <label>Item Name:</label>
+          <input type="text" name="name" value={formData.item} onChange={handleChange} required />
+        </div>
+        <div className="form-group">
+          <label>Quantity:</label>
+          <input type="num" name="phone" value={formData.quantity} onChange={handleChange} required />
+        </div>
+        <div className="form-group">
+          <label>Amount</label>
+          <input type="number" name="phone" value={formData.amount} onChange={handleChange} required />
         </div>
         <div className="form-group">
           <label>Address:</label>
