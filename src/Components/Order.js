@@ -8,7 +8,7 @@ const Order = () => {
     const handleSubmit = (e) => {
       e.preventDefault();
       // Handle form submission here
-      console.log('Lead added:', { name, email, phone });
+      console.log('Lead added:', { name, email, phone, item, quantity, });
       setName('');
       setEmail('');
       setPhone('');

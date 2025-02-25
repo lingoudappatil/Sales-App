@@ -72,7 +72,7 @@ const Quotation = () => {
               required
             />
           </div>
-          <button type="submit">Add Lead</button>
+          <button type="submit">Add Quotation</button>
         </form>
       </div>
     );
