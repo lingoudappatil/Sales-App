@@ -1,6 +1,6 @@
 import './Lead.css';
 
-const Lead = () => {
+const Quotation = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
@@ -16,10 +16,10 @@ const Lead = () => {
   
     return (
       <div className="add-customer-form">
-        <h2>Add Lead Details</h2>
+        <h2>Add Quotation Details</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label>Lead Name:</label>
+            <label>Cusomer Name:</label>
             <input
               type="text"
               value={name}
