@@ -16,7 +16,7 @@ const Order = () => {
   
     return (
       <div className="add-customer-form">
-        <h2>Add Lead Details</h2>
+        <h2>Add Order Details</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Customer Name:</label>
