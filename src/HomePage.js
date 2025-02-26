@@ -42,7 +42,7 @@ const HomePage = ({ setCurrentPage }) => {
       <div className="content-wrapper">
         {/* Sidebar */}
         <div className={`sidebar ${sidebarOpen ? "expanded" : "collapsed"}`}>
-          <h2 className="logo">{sidebarOpen ? "My App" : "🔷"}</h2>
+          <h2 className="logo">{sidebarOpen ? "My Sale App" : "🔷"}</h2>
           <ul className="sidebar-list">
             {["Dashboard", "Add Customer", "Lead", "Quotation", "Order", "Logout"].map((item) => (
               <li
