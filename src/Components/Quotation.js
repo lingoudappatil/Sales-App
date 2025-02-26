@@ -28,7 +28,7 @@ const Quotation = () => {
             />
           </div>
           <div className="form-group">
-            <label>Email:</label>
+            <label>Email Id:</label>
             <input
               type="email"
               value={email}
