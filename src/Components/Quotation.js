@@ -57,7 +57,7 @@ const Quotation = () => {
           <div className="form-group">
             <label>Quantity:</label>
             <input
-              type="num"
+              type="number"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               required
@@ -66,7 +66,7 @@ const Quotation = () => {
           <div className="form-group">
             <label>Amount:</label>
             <input
-              type="num"
+              type="number"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               required
