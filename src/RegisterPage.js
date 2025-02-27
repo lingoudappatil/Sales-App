@@ -3,6 +3,8 @@ import React, { useState } from "react";
 const RegisterPage = ({ goToLogin, goToHome }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [address, setaddress] = useState("");
+  const [state, setState] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
@@ -26,6 +28,20 @@ const RegisterPage = ({ goToLogin, goToHome }) => {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          style={styles.input}
+        />
+        <input
+          type="text"
+          placeholder="Address"
+          value={address}
+          onChange={(e) => setaddress(e.target.value)}
+          style={styles.input}
+        />
+        <input
+          type="text"
+          placeholder="State"
+          value={state}
+          onChange={(e) => setState(e.target.value)}
           style={styles.input}
         />
         <input
