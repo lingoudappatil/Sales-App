@@ -1,36 +1,45 @@
-const styles = {
-    container: { 
-      textAlign: "center", 
-      padding: "20px",
-      display: "flex", 
-      flexDirection: "column", 
-      alignItems: "center" // Center everything
-    },
-    form: { 
-      width: "300px",  // Set a fixed width
-      display: "flex", 
-      flexDirection: "column", 
-      gap: "10px",
-      background: "#f9f9f9",
-      padding: "20px",
-      borderRadius: "8px",
-      boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)"
-    },
-    input: { 
-      padding: "10px", 
-      borderRadius: "5px", 
-      border: "1px solid #ccc",
-      width: "100%"  // Maintain 100% width inside the form
-    },
-    button: { 
-      padding: "10px", 
-      backgroundColor: "#4CAF50", 
-      color: "white", 
-      border: "none", 
-      cursor: "pointer",
-      borderRadius: "5px",
-      fontSize: "16px"
-    },
-    switchText: { marginTop: "10px" },
-    link: { color: "blue", cursor: "pointer" },
-  };
+.container {
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center everything */
+  }
+  
+  .form {
+    width: 300px; /* Set a fixed width */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%; /* Maintain 100% width inside the form */
+  }
+  
+  .button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .switchText {
+    margin-top: 10px;
+  }
+  
+  .link {
+    color: blue;
+    cursor: pointer;
+  }
+  
