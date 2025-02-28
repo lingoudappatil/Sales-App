@@ -330,7 +330,7 @@ const renderContent = (activeContent) => {
             <div className="stat-box">
             <h2>Below are the Demo Data</h2>
               <h3>Total Customers</h3>
-              <p>1,234</p>
+              <p>1000</p>
             </div>
             <div className="stat-box">
               <h3>Recent Orders</h3>
@@ -338,7 +338,7 @@ const renderContent = (activeContent) => {
             </div>
             <div className="stat-box">
               <h3>Monthly Revenue</h3>
-              <p>$45,678</p>
+              <p>Rs.45,678 /-</p>
             </div>
           </div>
         </div>
