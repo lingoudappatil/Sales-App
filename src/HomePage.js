@@ -328,6 +328,7 @@ const renderContent = (activeContent) => {
           <p>📊 Welcome to the Lingouda's Dashboard! Here you can see the overview of your activities.</p>
           <div className="stats-container">
             <div className="stat-box">
+            <h2>Below are the Demo Data</h2>
               <h3>Total Customers</h3>
               <p>1,234</p>
             </div>
