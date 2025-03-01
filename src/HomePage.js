@@ -331,6 +331,7 @@ const renderContent = (activeContent) => {
             <h2>Below are the Demo Data</h2>
               <h3>Total Customers</h3>
               <p>1000</p>
+              <p>1230</p>
             </div>
             <div className="stat-box">
               <h3>Recent Orders</h3>
@@ -363,7 +364,7 @@ const getIcon = (item) => {
     Lead: "👤",
     Quotation: "⚙️",
     Order: "📞",
-    "Add Customer": "➕",
+    AddCustomer: "➕",
     Logout: "🚪",
   };
   return <span>{icons[item]}</span>;
