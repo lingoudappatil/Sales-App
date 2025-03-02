@@ -328,8 +328,10 @@ const renderContent = (activeContent) => {
           <p>📊 Welcome to the Lingouda's Dashboard! Here you can see the overview of your activities.</p>
           <div className="stats-container">
             <div className="stat-box">
+            <h2>Below are the Demo Data</h2>
               <h3>Total Customers</h3>
-              <p>1,234</p>
+              <p>1000</p>
+              <p>1230</p>
             </div>
             <div className="stat-box">
               <h3>Recent Orders</h3>
@@ -337,7 +339,7 @@ const renderContent = (activeContent) => {
             </div>
             <div className="stat-box">
               <h3>Monthly Revenue</h3>
-              <p>$45,678</p>
+              <p>Rs.45,678 /-</p>
             </div>
           </div>
         </div>
@@ -351,7 +353,7 @@ const renderContent = (activeContent) => {
     case "Add Customer":
       return <AddCustomerForm />;
     default:
-      return <div>Welcome to the Dashboard Lingouda</div>;
+      return <div>Welcome to the Dashboard Lingouda, This includes Sales Operations</div>;
   }
 };
 
@@ -362,7 +364,7 @@ const getIcon = (item) => {
     Lead: "👤",
     Quotation: "⚙️",
     Order: "📞",
-    "Add Customer": "➕",
+    AddCustomer: "➕",
     Logout: "🚪",
   };
   return <span>{icons[item]}</span>;
