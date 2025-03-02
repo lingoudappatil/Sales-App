@@ -1,13 +1,22 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const LoginPage = ({ goToRegister, goToHome }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Login successful!");
-    goToHome(); // Navigate to Home Page
+    try {
+      const response = await axios.post('http://localhost:5000/api/login', {
+        username,
+        password
+      });
+      alert(response.data.message);
+      goToHome();
+    } catch (error) {
+      alert(error.response?.data?.message || 'Login failed');
+    }
   };
 
   return (
@@ -46,10 +55,10 @@ const styles = {
     padding: "20px",
     display: "flex", 
     flexDirection: "column", 
-    alignItems: "center" // Center everything
+    alignItems: "center"
   },
   form: { 
-    width: "300px",  // Set a fixed width
+    width: "300px",
     display: "flex", 
     flexDirection: "column", 
     gap: "10px",
@@ -62,7 +71,7 @@ const styles = {
     padding: "10px", 
     borderRadius: "5px", 
     border: "1px solid #ccc",
-    width: "100%"  // Maintain 100% width inside the form
+    width: "100%"
   },
   button: { 
     padding: "10px", 
