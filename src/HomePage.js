@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./HomePage.css";
-import Lead from "./Components/Lead"; // Import the Lead component
-import Quotation from "./Components/Quotation"; // Import the Quotation component
-import AddCustomerForm from "./Components/AddCustomerForm"; // Import the AddCustomerForm component
-import Order from "./Components/Order"; // Import the Order component
+import Lead from "./Components/Lead";
+import Quotation from "./Components/Quotation";
+import AddCustomerForm from "./Components/AddCustomerForm";
+import Order from "./Components/Order";
 
 const HomePage = ({ setCurrentPage }) => {
   const [activeContent, setActiveContent] = useState("Dashboard");
@@ -16,6 +16,13 @@ const HomePage = ({ setCurrentPage }) => {
     const timer = setInterval(() => setCurrentTime(new Date()), 1000);
     return () => clearInterval(timer);
   }, []);
+
+  const handleLogout = () => {
+    if (window.confirm("Are you sure you want to log out?")) {
+      console.log("Logging out...");
+      setCurrentPage("login"); // Navigate to Login page
+    }
+  };
 
   return (
     <div className={`container ${darkMode ? "dark" : "light"}`}>
@@ -52,15 +59,7 @@ const HomePage = ({ setCurrentPage }) => {
               <li
                 key={item}
                 className={`sidebar-list-item ${activeContent === item ? "active" : ""}`}
-                onClick={() => {
-                  if (item === "Logout") {
-                    if (window.confirm("Are you sure you want to log out?")) {
-                      setCurrentPage("login");
-                    }
-                  } else {
-                    setActiveContent(item);
-                  }
-                }}
+                onClick={() => (item === "Logout" ? handleLogout() : setActiveContent(item))}
               >
                 {getIcon(item)}
                 {sidebarOpen && <span style={{ marginLeft: "10px" }}>{item}</span>}
@@ -72,15 +71,13 @@ const HomePage = ({ setCurrentPage }) => {
         {/* Main Content */}
         <div className="main-content">
           <h1>{activeContent}</h1>
-
           {activeContent === "Dashboard" && (
             <div className="marquee-wrapper">
               <marquee behavior="scroll" direction="left" className="marquee">
-                📢 Welcome to the Lingouda's Dashboard! Stay updated with the latest information here.
+                📢 Welcome to Lingouda's Dashboard! Stay updated with the latest information here.
               </marquee>
             </div>
           )}
-
           {renderContent(activeContent)}
         </div>
       </div>
@@ -88,77 +85,13 @@ const HomePage = ({ setCurrentPage }) => {
   );
 };
 
-// Add Order Form Component
-// const Order = () => {
-//   const [formData, setFormData] = useState({
-//     name: '',
-//     email: '',
-//     phone: '',
-//     address: ''
-//   });
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     console.log('Order data:', formData);
-//     setFormData({ name: '', email: '', phone: '', item: '', quantity: '', amount:'', address: '' });
-//     alert('Order added successfully!');
-//   };
-
-//   const handleChange = (e) => {
-//     setFormData({ ...formData, [e.target.name]: e.target.value });
-//   };
-
-//   return (
-//     <div className="add-customer-form" >
-//       <h2>New Order page for sale</h2>
-//       <form onSubmit={handleSubmit}>
-//         <div className="form-group">
-//           <label>Full Name:</label>
-//           <input type="text" name="name" value={formData.name} onChange={handleChange} required />
-//         </div>
-//         <div className="form-group">
-//           <label>Email:</label>
-//           <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-//         </div>
-//         <div className="form-group">
-//           <label>Phone Number:</label>
-//           <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
-//         </div>
-//         <div className="form-group">
-//           <label>Item Name:</label>
-//           <input type="text" name="item" value={formData.item} onChange={handleChange} required />
-//         </div>
-//         <div className="form-group">
-//           <label>Quantity:</label>
-//           <input type="number" name="quantity" value={formData.quantity} onChange={handleChange} required />
-//         </div>
-//         <div className="form-group">
-//           <label>Amount</label>
-//           <input type="number" name="amount" value={formData.amount} onChange={handleChange} required />
-//         </div>
-//         <div className="form-group">
-//           <label>Address:</label>
-//           <textarea name="address" value={formData.address} onChange={handleChange} rows="3" />
-//         </div>
-//         <div className="form-group">
-//           <label>State:</label>
-//           <input type="text" name="state" value={formData.state} onChange={handleChange} required />
-//         </div>
-//         <button type="submit" className="submit-button">
-//           Submit
-//         </button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// Content Renderer
+// Function to render different content based on sidebar selection
 const renderContent = (activeContent) => {
   switch (activeContent) {
     case "Dashboard":
       return (
         <div className="dashboard-content">
-          <p>📊 Welcome to the Lingouda's Dashboard! Here you can see the overview of your activities.</p>
+          <p>📊 Welcome to Lingouda's Dashboard! Here you can see an overview of your activities.</p>
           <div className="stats-container">
             <div className="stat-box">
               <h2>Below are the Demo Data</h2>
@@ -190,7 +123,7 @@ const renderContent = (activeContent) => {
   }
 };
 
-// Sidebar Icons
+// Function to return sidebar icons
 const getIcon = (item) => {
   const icons = {
     Dashboard: "📊",
