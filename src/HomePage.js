@@ -19,8 +19,7 @@ const HomePage = ({ setCurrentPage }) => {
 
   const handleLogout = () => {
     if (window.confirm("Are you sure you want to log out?")) {
-      console.log("Logging out...");
-      setCurrentPage("login"); // Navigate to Login page
+      setCurrentPage("login"); // Use prop from App.js
     }
   };
 
@@ -43,7 +42,9 @@ const HomePage = ({ setCurrentPage }) => {
           />
         </div>
 
-        <span style={{ marginLeft: "auto", color: "white" }}>{currentTime.toLocaleTimeString()}</span>
+        <span style={{ marginLeft: "auto", color: "white" }}>
+          {currentTime.toLocaleTimeString()}
+        </span>
         <button className="dark-mode-button" onClick={() => setDarkMode(!darkMode)}>
           {darkMode ? "🌞 Light Mode" : "🌙 Dark Mode"}
         </button>
@@ -85,7 +86,7 @@ const HomePage = ({ setCurrentPage }) => {
   );
 };
 
-// Function to render different content based on sidebar selection
+// Helper function to render content
 const renderContent = (activeContent) => {
   switch (activeContent) {
     case "Dashboard":
@@ -123,14 +124,14 @@ const renderContent = (activeContent) => {
   }
 };
 
-// Function to return sidebar icons
+// Helper function for sidebar icons
 const getIcon = (item) => {
   const icons = {
     Dashboard: "📊",
     Lead: "👤",
     Quotation: "⚙️",
     Order: "📞",
-    AddCustomer: "➕",
+    "Add Customer": "➕",
     Logout: "🚪",
   };
   return <span>{icons[item]}</span>;

@@ -22,7 +22,9 @@ function App() {
         />
       )}
       
-      {currentPage === 'home' && <HomePage />}
+      {currentPage === 'home' && (
+        <HomePage setCurrentPage={setCurrentPage} />  // Pass setCurrentPage as prop
+      )}
     </div>
   );
 }
