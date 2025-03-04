@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./HomePage.css";
+import Lead from "./Components/Lead"; // Import the Lead component
 
 const HomePage = ({ setCurrentPage }) => {
   const [activeContent, setActiveContent] = useState("Dashboard");
@@ -126,7 +127,7 @@ const AddCustomerForm = () => {
         </div>
         <div className="form-group">
           <label>State:</label>
-          <input type="text" name="state" value={formData.name} onChange={handleChange} required />
+          <input type="text" name="state" value={formData.state} onChange={handleChange} required />
         </div>
         <button type="submit" className="submit-button">
           Add Customer
@@ -135,59 +136,6 @@ const AddCustomerForm = () => {
     </div>
   );
 };
-
-// Add Lead Form Component
-const Lead = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    address: ''
-  });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Lead data:', formData);
-    setFormData({ name: '', email: '', phone: '', address: '' });
-    alert('Lead added successfully!');
-  };
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  return (
-    <div className="add-customer-form" >
-      <h2>New Lead  Registration for sale</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Full Name:</label>
-          <input type="text" name="name" value={formData.name} onChange={handleChange} required />
-        </div>
-        <div className="form-group">
-          <label>Email:</label>
-          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-        </div>
-        <div className="form-group">
-          <label>Phone Number:</label>
-          <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
-        </div>
-        <div className="form-group">
-          <label>Address:</label>
-          <textarea name="address" value={formData.address} onChange={handleChange} rows="3" />
-        </div>
-        <div className="form-group">
-          <label>State:</label>
-          <input type="text" name="state" value={formData.name} onChange={handleChange} required />
-        </div>
-        <button type="submit" className="submit-button">
-          Add Customer
-        </button>
-      </form>
-    </div>
-  );
-};
-
 
 // Add Quotation Form Component
 const Quotation = () => {
@@ -227,15 +175,15 @@ const Quotation = () => {
         </div>
         <div className="form-group">
           <label>Item Name:</label>
-          <input type="text" name="name" value={formData.item} onChange={handleChange} required />
+          <input type="text" name="item" value={formData.item} onChange={handleChange} required />
         </div>
         <div className="form-group">
           <label>Quantity:</label>
-          <input type="num" name="phone" value={formData.quantity} onChange={handleChange} required />
+          <input type="number" name="quantity" value={formData.quantity} onChange={handleChange} required />
         </div>
         <div className="form-group">
           <label>Amount</label>
-          <input type="number" name="phone" value={formData.amount} onChange={handleChange} required />
+          <input type="number" name="amount" value={formData.amount} onChange={handleChange} required />
         </div>
         <div className="form-group">
           <label>Address:</label>
@@ -243,7 +191,7 @@ const Quotation = () => {
         </div>
         <div className="form-group">
           <label>State:</label>
-          <input type="text" name="state" value={formData.name} onChange={handleChange} required />
+          <input type="text" name="state" value={formData.state} onChange={handleChange} required />
         </div>
         <button type="submit" className="submit-button">
           Submit
@@ -252,8 +200,6 @@ const Quotation = () => {
     </div>
   );
 };
-
-
 
 // Add Order Form Component
 const Order = () => {
@@ -266,7 +212,7 @@ const Order = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Quotation data:', formData);
+    console.log('Order data:', formData);
     setFormData({ name: '', email: '', phone: '', item: '', quantity: '', amount:'', address: '' });
     alert('Order added successfully!');
   };
@@ -293,15 +239,15 @@ const Order = () => {
         </div>
         <div className="form-group">
           <label>Item Name:</label>
-          <input type="text" name="name" value={formData.item} onChange={handleChange} required />
+          <input type="text" name="item" value={formData.item} onChange={handleChange} required />
         </div>
         <div className="form-group">
           <label>Quantity:</label>
-          <input type="num" name="phone" value={formData.quantity} onChange={handleChange} required />
+          <input type="number" name="quantity" value={formData.quantity} onChange={handleChange} required />
         </div>
         <div className="form-group">
           <label>Amount</label>
-          <input type="number" name="phone" value={formData.amount} onChange={handleChange} required />
+          <input type="number" name="amount" value={formData.amount} onChange={handleChange} required />
         </div>
         <div className="form-group">
           <label>Address:</label>
@@ -309,10 +255,10 @@ const Order = () => {
         </div>
         <div className="form-group">
           <label>State:</label>
-          <input type="text" name="state" value={formData.name} onChange={handleChange} required />
+          <input type="text" name="state" value={formData.state} onChange={handleChange} required />
         </div>
         <button type="submit" className="submit-button">
-          submit
+          Submit
         </button>
       </form>
     </div>
@@ -328,7 +274,7 @@ const renderContent = (activeContent) => {
           <p>📊 Welcome to the Lingouda's Dashboard! Here you can see the overview of your activities.</p>
           <div className="stats-container">
             <div className="stat-box">
-            <h2>Below are the Demo Data</h2>
+              <h2>Below are the Demo Data</h2>
               <h3>Total Customers</h3>
               <p>1000</p>
               <p>1230</p>
