@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./HomePage.css";
 import Lead from "./Components/Lead"; // Import the Lead component
 import Quotation from "./Components/Quotation"; // Import the Quotation component
+import AddCustomerForm from "./Components/AddCustomerForm"; // Import the AddCustomerForm component
+import Order from "./Components/Order"; // Import the Order component
 
 const HomePage = ({ setCurrentPage }) => {
   const [activeContent, setActiveContent] = useState("Dashboard");
@@ -86,121 +88,69 @@ const HomePage = ({ setCurrentPage }) => {
   );
 };
 
-// Add Customer Form Component
-const AddCustomerForm = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    address: ''
-  });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Customer data:', formData);
-    setFormData({ name: '', email: '', phone: '', address: '' });
-    alert('Customer added successfully!');
-  };
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  return (
-    <div className="add-customer-form">
-      <h2>New Customer's Registration</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Full Name:</label>
-          <input type="text" name="name" value={formData.name} onChange={handleChange} required />
-        </div>
-        <div className="form-group">
-          <label>Email Id:</label>
-          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-        </div>
-        <div className="form-group">
-          <label>Phone Num:</label>
-          <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
-        </div>
-        <div className="form-group">
-          <label>Address:</label>
-          <textarea name="address" value={formData.address} onChange={handleChange} rows="3" />
-        </div>
-        <div className="form-group">
-          <label>State:</label>
-          <input type="text" name="state" value={formData.state} onChange={handleChange} required />
-        </div>
-        <button type="submit" className="submit-button">
-          Add Customer
-        </button>
-      </form>
-    </div>
-  );
-};
-
 // Add Order Form Component
-const Order = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    address: ''
-  });
+// const Order = () => {
+//   const [formData, setFormData] = useState({
+//     name: '',
+//     email: '',
+//     phone: '',
+//     address: ''
+//   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Order data:', formData);
-    setFormData({ name: '', email: '', phone: '', item: '', quantity: '', amount:'', address: '' });
-    alert('Order added successfully!');
-  };
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     console.log('Order data:', formData);
+//     setFormData({ name: '', email: '', phone: '', item: '', quantity: '', amount:'', address: '' });
+//     alert('Order added successfully!');
+//   };
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+//   const handleChange = (e) => {
+//     setFormData({ ...formData, [e.target.name]: e.target.value });
+//   };
 
-  return (
-    <div className="add-customer-form" >
-      <h2>New Order page for sale</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Full Name:</label>
-          <input type="text" name="name" value={formData.name} onChange={handleChange} required />
-        </div>
-        <div className="form-group">
-          <label>Email:</label>
-          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-        </div>
-        <div className="form-group">
-          <label>Phone Number:</label>
-          <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
-        </div>
-        <div className="form-group">
-          <label>Item Name:</label>
-          <input type="text" name="item" value={formData.item} onChange={handleChange} required />
-        </div>
-        <div className="form-group">
-          <label>Quantity:</label>
-          <input type="number" name="quantity" value={formData.quantity} onChange={handleChange} required />
-        </div>
-        <div className="form-group">
-          <label>Amount</label>
-          <input type="number" name="amount" value={formData.amount} onChange={handleChange} required />
-        </div>
-        <div className="form-group">
-          <label>Address:</label>
-          <textarea name="address" value={formData.address} onChange={handleChange} rows="3" />
-        </div>
-        <div className="form-group">
-          <label>State:</label>
-          <input type="text" name="state" value={formData.state} onChange={handleChange} required />
-        </div>
-        <button type="submit" className="submit-button">
-          Submit
-        </button>
-      </form>
-    </div>
-  );
-};
+//   return (
+//     <div className="add-customer-form" >
+//       <h2>New Order page for sale</h2>
+//       <form onSubmit={handleSubmit}>
+//         <div className="form-group">
+//           <label>Full Name:</label>
+//           <input type="text" name="name" value={formData.name} onChange={handleChange} required />
+//         </div>
+//         <div className="form-group">
+//           <label>Email:</label>
+//           <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+//         </div>
+//         <div className="form-group">
+//           <label>Phone Number:</label>
+//           <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
+//         </div>
+//         <div className="form-group">
+//           <label>Item Name:</label>
+//           <input type="text" name="item" value={formData.item} onChange={handleChange} required />
+//         </div>
+//         <div className="form-group">
+//           <label>Quantity:</label>
+//           <input type="number" name="quantity" value={formData.quantity} onChange={handleChange} required />
+//         </div>
+//         <div className="form-group">
+//           <label>Amount</label>
+//           <input type="number" name="amount" value={formData.amount} onChange={handleChange} required />
+//         </div>
+//         <div className="form-group">
+//           <label>Address:</label>
+//           <textarea name="address" value={formData.address} onChange={handleChange} rows="3" />
+//         </div>
+//         <div className="form-group">
+//           <label>State:</label>
+//           <input type="text" name="state" value={formData.state} onChange={handleChange} required />
+//         </div>
+//         <button type="submit" className="submit-button">
+//           Submit
+//         </button>
+//       </form>
+//     </div>
+//   );
+// };
 
 // Content Renderer
 const renderContent = (activeContent) => {
