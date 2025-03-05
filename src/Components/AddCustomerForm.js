@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Lead = () => {
+const AddCustomerForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -13,7 +13,7 @@ const Lead = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/api/leads", {
+      const response = await fetch("http://localhost:5000/api/customers", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -22,13 +22,13 @@ const Lead = () => {
       });
 
       if (response.ok) {
-        alert("Lead added successfully!");
+        alert("Customer added successfully!");
         setFormData({ name: '', email: '', phone: '', address: '', state: '' });
       } else {
-        alert("Failed to add lead.");
+        alert("Failed to add customer.");
       }
     } catch (error) {
-      console.error("Error adding lead:", error);
+      console.error("Error adding customer:", error);
       alert("Error connecting to server.");
     }
   };
@@ -39,7 +39,7 @@ const Lead = () => {
 
   return (
     <div className="add-customer-form">
-      <h2>New Lead Registration for Sale</h2>
+      <h2>New Customer Registration</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Full Name:</label>
@@ -62,11 +62,11 @@ const Lead = () => {
           <input type="text" name="state" value={formData.state} onChange={handleChange} required />
         </div>
         <button type="submit" className="submit-button">
-          Add Lead
+          Add Customer
         </button>
       </form>
     </div>
   );
 };
 
-export default Lead;
+export default AddCustomerForm;
