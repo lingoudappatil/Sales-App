@@ -12,11 +12,37 @@ const Quotation = () => {
     state: ''
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Quotation data:', formData);
-    setFormData({ name: '', email: '', phone: '', item: '', quantity: '', amount: '', address: '', state: '' });
-    alert('Quotation added successfully!');
+    
+    try {
+      const response = await fetch("http://localhost:5000/api/quotations", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert("Quotation added successfully!");
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          item: '',
+          quantity: '',
+          amount: '',
+          address: '',
+          state: ''
+        });
+      } else {
+        alert("Failed to add quotation.");
+      }
+    } catch (error) {
+      console.error("Error adding quotation:", error);
+      alert("Error connecting to server.");
+    }
   };
 
   const handleChange = (e) => {
