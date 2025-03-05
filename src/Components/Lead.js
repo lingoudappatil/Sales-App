@@ -5,14 +5,33 @@ const Lead = () => {
     name: '',
     email: '',
     phone: '',
-    address: ''
+    address: '',
+    state: '' // Added 'state' to initial data
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => { // Made the function async
     e.preventDefault();
-    console.log('Lead data:', formData);
-    setFormData({ name: '', email: '', phone: '', address: '' });
-    alert('Lead added successfully!');
+    try {
+      const response = await fetch('http://localhost:5000/api/leads', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to add lead');
+      }
+
+      const data = await response.json();
+      console.log('Lead added:', data);
+      setFormData({ name: '', email: '', phone: '', address: '', state: '' }); // Reset all fields
+      alert('Lead added successfully!');
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Failed to add lead. Please try again.');
+    }
   };
 
   const handleChange = (e) => {
