@@ -34,6 +34,7 @@ const Lead = () => {
     }
   };
 
+  
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -45,7 +46,7 @@ const Lead = () => {
         <div className="form-group">
           <label>Full Name:</label>
           <input type="text" name="name" value={formData.name} onChange={handleChange} required />
-        </div>
+        </div> 
         <div className="form-group">
           <label>Email:</label>
           <input type="email" name="email" value={formData.email} onChange={handleChange} required />
