@@ -39,7 +39,7 @@ const AddCustomerForm = () => {
 
   return (
     <div className="add-customer-form">
-      <h2>New Customer Registration</h2>
+      <h2>Add Customer</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Full Name:</label>
