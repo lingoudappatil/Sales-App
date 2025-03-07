@@ -75,7 +75,7 @@ const HomePage = ({ setCurrentPage }) => {
           {activeContent === "Dashboard" && (
             <div className="marquee-wrapper">
               <marquee behavior="scroll" direction="left" className="marquee">
-                📢 Welcome to Lingouda's Dashboard! Stay updated with the latest information here.
+                📢 Welcome to Sales's Dashboard! Stay updated with the latest information here.
               </marquee>
             </div>
           )}
@@ -95,17 +95,24 @@ const renderContent = (activeContent) => {
           <p>📊 Welcome to Lingouda's Dashboard! Here you can see an overview of your activities.</p>
           <div className="stats-container">
             <div className="stat-box">
-              <h2>Below are the Demo Data</h2>
+              <h2>Sales Data Overview</h2>
               <h3>Total Customers</h3>
-              <p>1000</p>
-              <p>1230</p>
+              <p>1000</p>            
             </div>
             <div className="stat-box">
-              <h3>Recent Orders</h3>
+              <h3>Today's Leads</h3>
               <p>89</p>
             </div>
             <div className="stat-box">
-              <h3>Monthly Revenue</h3>
+              <h3>Today's Quotations</h3>
+              <p>89</p>
+            </div>
+            <div className="stat-box">
+              <h3>Today Orders</h3>
+              <p>Rs.12</p>
+            </div>
+            <div className="stat-box">
+              <h3>Todays Orders Amount</h3>
               <p>Rs.45,678 /-</p>
             </div>
           </div>
